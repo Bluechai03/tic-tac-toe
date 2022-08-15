@@ -1,0 +1,26 @@
+body, .container--center, .gameboard__cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.gameboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  max-width: 400px;
+}
+
+.gameboard__cell {
+  font-size: 50px;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+/*# sourceMappingURL=styles.css.map */

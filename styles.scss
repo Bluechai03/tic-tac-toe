@@ -1,0 +1,33 @@
+%center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    @extend %center;
+}
+
+.container{
+    &--center{
+    @extend %center;    
+    }
+}
+
+.gameboard{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    max-width: 400px;
+
+    &__cell{
+        @extend %center;
+        font-size: 50px;
+        width:100px;
+        height:100px;
+        border: 1px solid black;
+    }
+}
