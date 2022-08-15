@@ -1,6 +1,6 @@
 // Module pattern
 const gameBoard = (() => {
-  const arrayGameBoard = ['X', 'O', 'X', '', 'X', 'O', '', '', ''];
+  const arrayGameBoard = ['', '', '', '', '', '', '', '', ''];
   const renderGameBoard = () => {
     const container = document.querySelector('.gameboard');
     arrayGameBoard.forEach((marker) => {
@@ -11,33 +11,36 @@ const gameBoard = (() => {
     });
   };
 
-  // TODO create a function that decides that current player and switches after they place their marker
-  const currentTurn = () => {};
-
   return { arrayGameBoard, renderGameBoard };
 })();
 
 // Factory function
 // TODO Create a function inside player object that allows players to add their marker in board
 const Player = (name, marker) => {
-  // const wins = 0;
-  const addMarkerToBoard = () => {
-    const boardCells = document.querySelectorAll('.gameboard__cell');
-    boardCells.forEach((boardCell) => {
-      boardCell.addEventListener('click', () => {
-        if (!boardCell.textContent) {
-          boardCell.textContent = marker;
-          console.log('test');
-        }
-      });
-    });
-  };
-  return { name, addMarkerToBoard };
+  let currentScore;
+  let wins;
+  const displayName = name;
+  return { name, marker, displayName };
 };
 
 // displayController
 const displayController = () => {
   gameBoard.renderGameBoard();
+  const playerOne = Player('One', 'X');
+  const playerTwo = Player('Two', 'O');
+  let currentPlayer = playerOne;
+
+  const addMarkerToBoard = () => {
+    const boardCells = document.querySelectorAll('.gameboard__cell');
+    boardCells.forEach((boardCell) => {
+      boardCell.addEventListener('click', () => {
+        if (!boardCell.textContent) boardCell.textContent = currentPlayer.marker;
+        currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+      });
+    });
+  };
+
+  addMarkerToBoard();
 };
 
 displayController();
